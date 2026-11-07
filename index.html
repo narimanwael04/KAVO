@@ -74,6 +74,41 @@
 
    #btnOpenSetup{display:none !important;}    /* hide backend button for public  */
 
+  /* Mobile-only product image sizing; original image files and desktop layout stay unchanged. */
+  @media (max-width: 639px) {
+    a.kavo-product-card-image-link {
+      display: flex;
+      width: 100%;
+      min-height: 230px;
+      height: 230px;
+      padding: 8px;
+      align-items: center;
+      justify-content: center;
+    }
+    img.kavo-product-card-image {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: 214px;
+      max-height: 214px;
+      object-fit: contain;
+      object-position: center;
+    }
+    div.kavo-product-detail-image-wrap {
+      min-height: 280px;
+      padding: 8px;
+    }
+    img.kavo-product-detail-image {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: 264px;
+      max-height: 264px;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
   ::-webkit-scrollbar { width: 7px; height: 7px; }
   ::-webkit-scrollbar-track { background: #f1f5f9; }
   ::-webkit-scrollbar-thumb { background: #98c8e2; border-radius: 4px; }
@@ -9485,7 +9520,6 @@ const Router = {
     const params = new URLSearchParams(queryString || '');
 
     closeDrawers();
-    window.scrollTo(0, 0);
     if (path !== '/checkout') window._lastOrder = null;
 
     if (path === '/' || path === '') {
@@ -9516,6 +9550,16 @@ const Router = {
     } else {
       Views.notFound();
     }
+
+    // Scroll only after the new route has been rendered. This prevents
+    // mobile browsers from leaving the visitor at the old page's footer.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      });
+    });
   }
 };
 
@@ -9709,8 +9753,8 @@ const Views = {
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm">
           <div class="lg:col-span-6 flex flex-col items-center justify-center p-8 bg-gradient-to-b from-kavo-50 to-white rounded-2xl border border-kavo-100">
-            <div class="w-full max-w-md py-6 flex items-center justify-center min-h-[260px]">
-              <img id="pdpMainImage" src="${p.mainImage || selectedColor.image}" alt="${p.name[state.lang]}" class="max-h-[260px] w-auto object-contain drop-shadow-md transition-all duration-300" />
+            <div class="kavo-product-detail-image-wrap w-full max-w-md py-6 flex items-center justify-center min-h-[260px]">
+              <img id="pdpMainImage" src="${p.mainImage || selectedColor.image}" alt="${p.name[state.lang]}" class="kavo-product-detail-image max-h-[260px] w-auto object-contain drop-shadow-md transition-all duration-300" />
             </div>
             <div class="w-full flex items-center justify-between text-xs text-slate-400 border-t border-slate-100 pt-3">
               <span>SKU: <b class="text-slate-800">${p.sku}</b></span>
@@ -10081,8 +10125,8 @@ const Components = {
 
            
 
-              <a href="#/p/${p.id}" class="block py-3 px-2 sm:py-4 bg-gradient-to-b from-kavo-50/50 to-white rounded-2xl border border-kavo-100/60 mb-4 overflow-hidden flex items-center justify-center min-h-[210px] sm:min-h-[160px]">
-                 <img id="card-img-${p.id}" src="${p.mainImage}" alt="${p.name[state.lang]}" class="max-h-[190px] sm:max-h-[140px] w-auto object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+              <a href="#/p/${p.id}" class="kavo-product-card-image-link block py-3 px-2 sm:py-4 bg-gradient-to-b from-kavo-50/50 to-white rounded-2xl border border-kavo-100/60 mb-4 overflow-hidden flex items-center justify-center min-h-[210px] sm:min-h-[160px]">
+                 <img id="card-img-${p.id}" src="${p.mainImage}" alt="${p.name[state.lang]}" class="kavo-product-card-image max-h-[190px] sm:max-h-[140px] w-auto object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
               </a>
 
 
