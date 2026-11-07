@@ -9485,7 +9485,7 @@ const Router = {
     const params = new URLSearchParams(queryString || '');
 
     closeDrawers();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
     if (path !== '/checkout') window._lastOrder = null;
 
     if (path === '/' || path === '') {
@@ -10079,9 +10079,13 @@ const Components = {
             ${p.tags.includes('best') ? '<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-black uppercase">Popular</span>' : ''}
           </div>
 
-          <a href="#/p/${p.id}" class="block py-4 px-2 bg-gradient-to-b from-kavo-50/50 to-white rounded-2xl border border-kavo-100/60 mb-4 overflow-hidden flex items-center justify-center min-h-[160px]">
-            <img id="card-img-${p.id}" src="${p.mainImage}" alt="${p.name[state.lang]}" class="max-h-[140px] w-auto object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" />
-          </a>
+           
+
+              <a href="#/p/${p.id}" class="block py-3 px-2 sm:py-4 bg-gradient-to-b from-kavo-50/50 to-white rounded-2xl border border-kavo-100/60 mb-4 overflow-hidden flex items-center justify-center min-h-[210px] sm:min-h-[160px]">
+                 <img id="card-img-${p.id}" src="${p.mainImage}" alt="${p.name[state.lang]}" class="max-h-[190px] sm:max-h-[140px] w-auto object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+              </a>
+
+
 
           <div class="space-y-1">
             <span class="text-[11px] font-bold text-kavo-600 uppercase tracking-wide">${p.subcategory ? (p.category === 'men' ? (MEN_SUBCATEGORIES.find(x => x.id === p.subcategory)?.[state.lang] || p.subcategory) : womenSubcategoryLabel(p.subcategory)) : p.category}</span>
