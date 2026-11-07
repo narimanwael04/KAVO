@@ -74,25 +74,30 @@
 
    #btnOpenSetup{display:none !important;}    /* hide backend button for public  */
 
-  /* Mobile-only product image sizing; original image files and desktop layout stay unchanged. */
+  /* Mobile-only product image sizing; desktop/tablet styles and source images stay unchanged. */
   @media (max-width: 639px) {
     a.kavo-product-card-image-link {
       display: flex;
+      box-sizing: border-box;
       width: 100%;
-      min-height: 230px;
-      height: 230px;
-      padding: 8px;
+      min-height: 250px;
+      height: 250px;
+      padding: 0;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
     img.kavo-product-card-image {
       display: block;
+      box-sizing: border-box;
       width: 100%;
       max-width: 100%;
-      height: 214px;
-      max-height: 214px;
+      height: 100%;
+      max-height: none;
       object-fit: contain;
       object-position: center;
+      transform: scale(1.28);
+      transform-origin: center;
     }
     div.kavo-product-detail-image-wrap {
       min-height: 280px;
@@ -2471,7 +2476,7 @@ var KAVO_CATALOG = {
 }
 
 var KAVO_METRO_GOVS = [&quot;Cairo&quot;, &quot;Giza&quot;, &quot;Alexandria&quot;, &quot;Qalyubia&quot;]; // Retained for compatibility; shipping uses the explicit governorate rules below.
-var KAVO_GOVS = [&quot;Cairo&quot;,&quot;Giza&quot;,&quot;Alexandria&quot;,&quot;Qalyubia&quot;,&quot;Sharqia&quot;,&quot;Dakahlia&quot;,&quot;Gharbia&quot;,&quot;Monufia&quot;,&quot;Beheira&quot;,&quot;Kafr El Sheikh&quot;,&quot;Damietta&quot;,&quot;Port Said&quot;,&quot;Ismailia&quot;,&quot;Suez&quot;,&quot;Fayoum&quot;,&quot;Beni Suef&quot;,&quot;Minya&quot;,&quot;Asyut&quot;,&quot;Sohag&quot;,&quot;Qena&quot;,&quot;Luxor&quot;,&quot;Aswan&quot;,&quot;Red Sea&quot;,&quot;New Valley&quot;,&quot;Matrouh&quot;,&quot;North Sinai&quot;,&quot;South Sinai&quot;];
+var KAVO_GOVS = [&quot;Cairo&quot;,&quot;Giza&quot;,&quot;Alexandria&quot;,&quot;Qalyubia&quot;,&quot;Sharqia&quot;,&quot;Dakahlia&quot;,&quot;Gharbia&quot;,&quot;Monufia&quot;,&quot;Beheira&quot;,&quot;Kafr El Sheikh&quot;,&quot;Damietta&quot;,&quot;Port Said&quot;,&quot;Ismailia&quot;,&quot;Suez&quot;,&quot;Fayoum&quot;,&quot;Beni Suef&quot;,&quot;Minya&quot;,&quot;Asyut&quot;,&quot;Sohag&quot;,&quot;Qena&quot;,&quot;Luxor&quot;,&quot;Matrouh&quot;,&quot;North Sinai&quot;,&quot;South Sinai&quot;];
 var KAVO_PHONE_RE = /^01[0125][0-9]{8}$/;
 
 function doPost(e) {
@@ -2626,9 +2631,6 @@ const GOVERNORATES = [
   { en: 'Sohag', ar: 'سوهاج' },
   { en: 'Qena', ar: 'قنا' },
   { en: 'Luxor', ar: 'الأقصر' },
-  { en: 'Aswan', ar: 'أسوان' },
-  { en: 'Red Sea', ar: 'البحر الأحمر' },
-  { en: 'New Valley', ar: 'الوادي الجديد' },
   { en: 'Matrouh', ar: 'مطروح' },
   { en: 'North Sinai', ar: 'شمال سيناء' },
   { en: 'South Sinai', ar: 'جنوب سيناء' }

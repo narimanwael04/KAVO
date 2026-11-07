@@ -2071,7 +2071,7 @@ var KAVO_CATALOG = {
 }
 
 var KAVO_METRO_GOVS = ["Cairo", "Giza", "Alexandria", "Qalyubia"]; // Retained for compatibility; shipping uses the explicit governorate rules below.
-var KAVO_GOVS = ["Cairo","Giza","Alexandria","Qalyubia","Sharqia","Dakahlia","Gharbia","Monufia","Beheira","Kafr El Sheikh","Damietta","Port Said","Ismailia","Suez","Fayoum","Beni Suef","Minya","Asyut","Sohag","Qena","Luxor","Aswan","Red Sea","New Valley","Matrouh","North Sinai","South Sinai"];
+var KAVO_GOVS = ["Cairo","Giza","Alexandria","Qalyubia","Sharqia","Dakahlia","Gharbia","Monufia","Beheira","Kafr El Sheikh","Damietta","Port Said","Ismailia","Suez","Fayoum","Beni Suef","Minya","Asyut","Sohag","Qena","Luxor","Matrouh","North Sinai","South Sinai"];
 var KAVO_PHONE_RE = /^01[0125][0-9]{8}$/;
 
 function doPost(e) {
